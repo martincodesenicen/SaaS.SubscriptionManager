@@ -1,8 +1,10 @@
 using MediatR;
 using SaaS.SubscriptionManager.Domain.Entities;
 using SaaS.SubscriptionManager.Domain.Interfaces;
-namespace SaaS.SubscriptionManager.Applcation.Subscriptions.Commands;
+namespace SaaS.SubscriptionManager.Application.Subscriptions.Commands;
+// el command contiene solo los datos necesarios para la operacion
 public record CreateSubscriptionCommand(Guid UserId) : IRequest<Guid>;
+// el handler contiene la lógica de qué pasa cuando ejecutamos ee comando
 public class CreateSubscriptionHandler : IRequestHandler<CreateSubscriptionCommand, Guid>
 {
     private readonly ISubscriptionRepository _repository;
