@@ -2,11 +2,11 @@ using SaaS.SubscriptionManager.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore; // Necesario para AddDbContext
 using SaaS.SubscriptionManager.Infrastructure.Persistence; // Donde está ApplicationDbContext
 using SaaS.SubscriptionManager.Infrastructure.Repositories; // Donde está SubscriptionRepository
-using System.Reflection;
 using FluentValidation;
 using SaaS.SubscriptionManager.Application.Common.Behaviors;
 using MediatR;
 using SaaS.SubscriptionManager.Application.Subscriptions.Commands;
+using SaaS.SubscriptionManager.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +28,9 @@ builder.Services.AddMediatR(cfg => {
 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 });
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -40,6 +43,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseExceptionHandler();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

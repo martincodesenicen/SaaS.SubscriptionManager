@@ -11,8 +11,5 @@ public class CreateSubscriptionCommandValidator : AbstractValidator<CreateSubscr
         RuleFor(x => x.UserId)
             .NotEmpty()
             .WithMessage("El ID de usuario es obligatorio y no puede estar vacío.");
-
-        // Ejemplo de otra regla si tuvieras más campos:
-        // RuleFor(x => x.PlanId).GreaterThan(0).WithMessage("Debe seleccionar un plan válido.");
     }
 }
