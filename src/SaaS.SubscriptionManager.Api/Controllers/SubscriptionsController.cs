@@ -43,4 +43,14 @@ public class SubscriptionsController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpPut("{id}/activate")]
+    public async Task<IActionResult> Activate(Guid id, [FromBody] DateTime expirationDate)
+    {
+        var result = await _mediator.Send(new ActivateSubscriptionCommand(id, expirationDate));
+
+        if (!result) return NotFound();
+
+        return NoContent(); // 204: Se procesó correctamente pero no devolvemos contenido
+    }
 }

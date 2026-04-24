@@ -1,5 +1,5 @@
 namespace SaaS.SubscriptionManager.Domain.Enums;
-public enum SusbscriptionStatus
+public enum SubscriptionStatus
 {
     Pending = 1,
     Active = 2,
