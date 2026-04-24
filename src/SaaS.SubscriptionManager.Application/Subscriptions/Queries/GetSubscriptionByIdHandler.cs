@@ -22,6 +22,7 @@ public class GetSubscriptionByIdHandler : IRequestHandler<GetSubscriptionByIdQue
             subscription.Id, 
             subscription.UserId, 
             subscription.Status.ToString(), 
-            subscription.CreatedAt);
+            subscription.CreatedAt,
+            subscription.ExpirationDate);
     }
 }
