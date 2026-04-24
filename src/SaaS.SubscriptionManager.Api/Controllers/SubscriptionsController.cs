@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaaS.SubscriptionManager.Application.Subscriptions.Commands;
+using SaaS.SubscriptionManager.Application.Subscriptions.Queries;
 
 namespace SaaS.SubscriptionManager.Api.Controllers;
 
@@ -23,5 +24,23 @@ public class SubscriptionsController : ControllerBase
         var subscriptionId = await _mediator.Send(command);
 
         return Ok(subscriptionId);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        // Creamos el Query con el ID que viene de la URL
+        var query = new GetSubscriptionByIdQuery(id);
+
+        // Lo enviamos por MediatR
+        var result = await _mediator.Send(query);
+
+        // Si no existe, devolvemos un 404. Si existe, el DTO con los datos
+        if (result == null)
+        {
+            return NotFound(new { Message = $"No se encontró la suscripción con ID: {id}" });
+        }
+
+        return Ok(result);
     }
 }
