@@ -6,6 +6,7 @@ public class Subscription
     public Guid UserId { get; private set; }
     public SusbscriptionStatus Status { get; private set; }
     public DateTime? ExpirationDate { get; private set; }
+    public DateTime CreatedAt { get; private set; }
 
     // Constructor para la creación de la primera sub
     public Subscription(Guid userId)
@@ -13,6 +14,7 @@ public class Subscription
         Id = Guid.NewGuid();
         UserId = userId;
         Status = SusbscriptionStatus.Pending; // Se crea pendiente
+        CreatedAt = DateTime.UtcNow;
     }
     public void Activate(DateTime expiration)
     {
