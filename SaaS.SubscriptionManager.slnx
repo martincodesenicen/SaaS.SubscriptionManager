@@ -4,5 +4,6 @@
     <Project Path="src/SaaS.SubscriptionManager.Application/SaaS.SubscriptionManager.Application.csproj" />
     <Project Path="src/SaaS.SubscriptionManager.Domain/SaaS.SubscriptionManager.Domain.csproj" />
     <Project Path="src/SaaS.SubscriptionManager.Infrastructure/SaaS.SubscriptionManager.Infrastructure.csproj" />
+    <Project Path="src/SaaS.SubscriptionManager.Web/SaaS.SubscriptionManager.Web.csproj" />
   </Folder>
 </Solution>

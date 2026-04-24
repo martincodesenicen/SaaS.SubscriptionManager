@@ -1,0 +1,64 @@
+﻿@page "/"
+@using SaaS.SubscriptionManager.Application.Subscriptions.Queries
+@using SaaS.SubscriptionManager.Web.Services
+@inject SubscriptionService SubService
+
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-8">
+    <MudText Typo="Typo.h4" Class="mb-6" Color="Color.Primary">Panel de Gestión</MudText>
+
+    @if (subscriptions == null)
+    {
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+    }
+    else
+    {
+        <MudTable Items="@subscriptions" Hover="true" Striped="true" Elevation="4" Class="rounded-lg">
+            <ToolBarContent>
+                <MudText Typo="Typo.h6">Suscripciones</MudText>
+                <MudSpacer />
+            </ToolBarContent>
+            
+            <HeaderContent>
+                <MudTh>ID de Usuario</MudTh>
+                <MudTh>Estado</MudTh>
+                <MudTh>Fecha Inicio</MudTh>
+                <MudTh>Expiración</MudTh>
+            </HeaderContent>
+
+            <RowTemplate>
+                <MudTd DataLabel="Usuario">@context.UserId</MudTd>
+                <MudTd DataLabel="Estado">
+                    <MudChip T="string" 
+                             Size="Size.Small" 
+                             Color="@(context.Status == "Active" ? Color.Success : Color.Warning)">
+                        @context.Status
+                    </MudChip>
+                </MudTd>
+                <MudTd DataLabel="Inicio">@context.CreatedAt.ToString("dd/MM/yyyy")</MudTd>
+                <MudTd DataLabel="Expiración">
+                    @(context.ExpirationDate?.ToString("dd/MM/yyyy") ?? "Sin límite")
+                </MudTd>
+            </RowTemplate>
+
+            <PagerContent>
+                <MudTablePager />
+            </PagerContent>
+        </MudTable>
+    }
+</MudContainer>
+
+@code {
+    private List<SubscriptionResponse>? subscriptions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try 
+        {
+            subscriptions = await SubService.GetSubscriptionsAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}

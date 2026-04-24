@@ -26,6 +26,14 @@ public class SubscriptionsController : ControllerBase
         return Ok(subscriptionId);
     }
 
+    [HttpGet]
+    public async Task<ActionResult<List<SubscriptionResponse>>> GetAll()
+    {
+        var query = new GetAllSubscriptionsQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(Guid id)
     {

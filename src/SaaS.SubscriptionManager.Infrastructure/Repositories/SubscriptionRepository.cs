@@ -23,4 +23,9 @@ public class SubscriptionRepository : ISubscriptionRepository
         _context.Subscriptions.Update(subscription);
         await _context.SaveChangesAsync(); 
     }
+
+    public async Task<List<Subscription>> GetAllAsync()
+    {
+        return await _context.Subscriptions.ToListAsync();
+    }
 }

@@ -1,0 +1,23 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudText Typo="Typo.h5" Class="ml-3">SaaS Manager</MudText>
+    </MudAppBar>
+    <MudDrawer Open="true" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-8">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+    <MudAppBar Color="Color.Primary" Fixed="true" Elevation="1">
+        <MudText Typo="Typo.h5">SaaS Manager</MudText>
+    </MudAppBar>
+</MudLayout>
