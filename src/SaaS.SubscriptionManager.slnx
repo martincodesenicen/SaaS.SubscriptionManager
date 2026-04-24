@@ -1,7 +1,0 @@
-<Solution>
-  <Project Path="SaaS.SubscriptionManager.Api/SaaS.SubscriptionManager.Api.csproj" />
-  <Project Path="SaaS.SubscriptionManager.Application/SaaS.SubscriptionManager.Application.csproj" />
-  <Project Path="SaaS.SubscriptionManager.Domain/SaaS.SubscriptionManager.Domain.csproj" />
-  <Project Path="SaaS.SubscriptionManager.Infrastructure/SaaS.SubscriptionManager.Infrastructure.csproj" />
-  <Project Path="SaaS.SubscriptionManager.Tests/SaaS.SubscriptionManager.Tests.csproj" />
-</Solution>
